@@ -39,8 +39,8 @@ export const ProjectsShowcase: React.FC<ProjectsShowcaseProps> = ({ limit, onVie
   return (
     <section id="work" aria-label="Projects showcase" className="relative z-10 px-4 py-24 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
+        <div className="mb-12 flex flex-col gap-6">
+          <div className="flex flex-col items-center justify-center text-center">
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#7c3aed]/40 bg-[#1e1b4b]/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#d2bbff]">
               <Sparkles className="h-3.5 w-3.5 text-[#ffb0cd]" />
               <span>Real Work</span>
@@ -50,8 +50,22 @@ export const ProjectsShowcase: React.FC<ProjectsShowcaseProps> = ({ limit, onVie
             </h2>
           </div>
 
+          <div className="flex flex-col items-center justify-center gap-3">
+            <a
+              href="https://shourov1.netlify.app/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-[#7c3aed]/70 bg-gradient-to-r from-[#7c3aed]/90 to-[#3626ce]/90 px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-[0_0_28px_rgba(124,58,237,0.35)] transition-all duration-200 hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(124,58,237,0.55)]"
+            >
+              <span>Full Stack &amp; AI Projects</span>
+              <ExternalLink className="h-4 w-4" />
+            </a>
+            <p className="max-w-2xl text-center text-sm text-[#ccc3d8]">
+              A curated collection of product, AI, and full-stack builds focused on real-world impact, clean systems, and polished user experiences.
+            </p>
+          </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap items-center justify-center gap-2">
             {[['all', 'All work'], ['uiux', 'UI/UX design'], ['cms', 'CMS websites']].map(([key, label]) => {
               const isActive = activeFilter === key;
 
