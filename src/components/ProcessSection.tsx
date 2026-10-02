@@ -1,8 +1,51 @@
 import React, { useRef, useState } from 'react';
 import { GitBranch, Clock, Sparkles } from 'lucide-react';
 import { motion, useScroll, useSpring } from 'motion/react';
-import { processSteps } from '../data/portfolioData';
 import { TiltCard } from './TiltCard';
+
+interface ProcessStep {
+  step: string;
+  number: string;
+  title: string;
+  description: string;
+  pill: string;
+  artifacts: string[];
+}
+
+const processSteps: ProcessStep[] = [
+  {
+    step: '01',
+    number: '01',
+    title: 'Discovery & User Needs',
+    description: 'Understand the audience, brand, goals, and pain points before shaping the experience.',
+    pill: 'Brief & Scope',
+    artifacts: ['Project Brief', 'User Needs', 'Experience Goals']
+  },
+  {
+    step: '02',
+    number: '02',
+    title: 'Flows & Wireframes',
+    description: 'Map the important journeys and explore low-fidelity layouts before moving into visual design.',
+    pill: 'Lo-Fi Layouts',
+    artifacts: ['User Flows', 'Information Architecture', 'Wireframes']
+  },
+  {
+    step: '03',
+    number: '03',
+    title: 'High-Fidelity UI',
+    description: 'Shape the visual language, responsive layouts, interaction states, and polished prototype.',
+    pill: 'Hi-Fi System',
+    artifacts: ['UI Screens', 'Responsive States', 'Interactive Prototype']
+  },
+  {
+    step: '04',
+    number: '04',
+    title: 'Refine & Launch',
+    description: 'Review the details together, refine the final experience, and prepare a clear handoff for launch.',
+    pill: 'Dev Specs',
+    artifacts: ['Design Review', 'Content Polish', 'Launch Checklist']
+  }
+];
 
 export const ProcessSection: React.FC = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
@@ -14,7 +57,15 @@ export const ProcessSection: React.FC = () => {
     <section id="process" aria-label="Design Process" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-16 relative">
+          <motion.img 
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            src="/images/anime/process.jpg" 
+            alt="Process Strategy Ninja" 
+            className="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto mb-6 border-2 border-[#7c3aed]/40 object-cover shadow-[0_0_25px_rgba(124,58,237,0.25)]" 
+          />
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -83,10 +134,6 @@ export const ProcessSection: React.FC = () => {
                       >
                         {step.step}
                       </span>
-                      <div className="flex items-center gap-1 text-xs font-mono text-[#958da1]">
-                        <Clock className="w-3.5 h-3.5" />
-                        <span>{step.duration}</span>
-                      </div>
                     </div>
 
                     <h3 className="text-xl font-bold text-[#e3e0f7] mb-2">{step.title}</h3>

@@ -105,7 +105,7 @@ export const AboutSection: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="text-base sm:text-lg text-[#ccc3d8] leading-relaxed"
           >
-            I’m Shourov, a UI/UX Designer & CMS Specialist who creates intuitive interfaces and polished digital experiences,
+            I’m Shourov, a Product Designer who creates intuitive interfaces and polished digital experiences,
             alongside flexible CMS websites for brands that want to look good and stay easy to manage. My
             approach brings together research, wireframing, prototyping, visual design, and careful iteration.
           </motion.p>
@@ -120,9 +120,11 @@ export const AboutSection: React.FC = () => {
           >
             <img
               src="https://i.imgur.com/FuHguYi.png"
-              alt="Shourov, UI/UX Designer and CMS Specialist"
+              alt="Shourov, Product Designer"
               className="h-full w-full object-cover object-[58%_18%]"
               referrerPolicy="no-referrer"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#071126]/80 via-transparent to-transparent" />
           </motion.div>
@@ -137,7 +139,7 @@ export const AboutSection: React.FC = () => {
               <span className="rounded-full border border-[#7c3aed]/40 bg-[#7c3aed]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#d2bbff]">
                 SHOUROV
               </span>
-              <span className="text-sm font-medium text-[#ccc3d8]">UI/UX Designer & CMS Specialist</span>
+              <span className="text-sm font-medium text-[#ccc3d8]">Product Designer</span>
             </div>
             <div className="grid gap-5 text-sm text-[#ccc3d8] sm:grid-cols-2">
               <div className="flex items-start gap-3"><MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#d2bbff]" /><span>Mirpur-10, Dhaka, Bangladesh</span></div>
@@ -209,32 +211,44 @@ export const AboutSection: React.FC = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-5 p-8 rounded-3xl bg-gradient-to-br from-[#1e1b4b]/80 via-[#121221]/90 to-[#121221] border border-[#7c3aed]/40 flex flex-col justify-between"
+            className="lg:col-span-5 relative overflow-hidden rounded-3xl border border-[#7c3aed]/40 bg-[#121221] shadow-[0_15px_40px_rgba(124,58,237,0.15)] group transition-all duration-300 hover:border-[#a878ff]/60 hover:shadow-[0_20px_50px_rgba(124,58,237,0.3)] min-h-[300px]"
           >
-            <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#7c3aed] to-[#bf2076] flex items-center justify-center text-white shadow-[0_0_20px_rgba(124,58,237,0.5)]">
-                  <Award className="w-6 h-6" />
-                </div>
-                <span className="text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#d2bbff]">
-                  UI/UX focus
-                </span>
-              </div>
-              <h3 className="text-xl font-bold text-[#e3e0f7] mb-3">Thoughtful by design</h3>
-              <p className="text-xs sm:text-sm text-[#ccc3d8] leading-relaxed mb-6 font-normal">
-                I turn complex requirements into calm, useful interfaces. Every flow, state, and edge case is
-                considered early so people can move through a product with confidence.
-              </p>
+            {/* Right-aligned Background Image */}
+            <div className="absolute inset-y-0 right-0 w-[70%] sm:w-[65%] overflow-hidden">
+              <img 
+                src="/images/anime/experience.jpg" 
+                alt="Experience Sensei" 
+                className="h-full w-full object-cover object-center opacity-60 transition-transform duration-700 group-hover:scale-110 group-hover:opacity-90" 
+              />
+              {/* Blend gradients */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#121221] via-[#121221]/80 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#121221]/90 via-transparent to-transparent" />
             </div>
 
-            <div className="space-y-3 pt-6 border-t border-white/10">
-              <div className="flex items-center justify-between text-xs">
-                <span className="text-[#958da1]">Preferred stack:</span>
-                <span className="font-mono text-[#d2bbff]">Figma · Webflow · Wix · Squarespace</span>
+            {/* Content Overlay */}
+            <div className="relative z-10 p-8 h-full flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-8">
+                  <span className="text-xs font-mono px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[#d2bbff] backdrop-blur-md">
+                    UI/UX focus
+                  </span>
+                </div>
+                <h3 className="text-2xl font-bold text-[#e3e0f7] mb-3 drop-shadow-md">Thoughtful by design</h3>
+                <p className="max-w-[90%] text-sm text-[#ccc3d8] leading-relaxed mb-8 font-normal drop-shadow-md">
+                  I turn complex requirements into calm, useful interfaces. Every flow, state, and edge case is
+                  considered early so people can move through a product with confidence.
+                </p>
               </div>
-              <div className="flex items-center justify-between text-xs">
-                <span className="text-[#958da1]">Time zone:</span>
-                <span className="font-mono text-[#ccc3d8]">UTC+6 (Flexible US / EU overlap)</span>
+
+              <div className="space-y-4 pt-6 border-t border-white/10">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                  <span className="text-[#aeb7d1]">Preferred stack:</span>
+                  <span className="font-mono text-[#d2bbff]">Figma · Webflow · Wix · Squarespace</span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                  <span className="text-[#aeb7d1]">Time zone:</span>
+                  <span className="font-mono text-[#ccc3d8]">UTC+6 (Flexible US / EU overlap)</span>
+                </div>
               </div>
             </div>
           </motion.div>

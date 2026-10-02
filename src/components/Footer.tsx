@@ -20,7 +20,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <span>Shourov</span>
           </button>
           <p className="text-xs text-[#958da1] text-center md:text-left">
-            © 2026 Shourov · UI/UX Designer &amp; CMS Specialist
+            © 2026 Shourov · Product Designer
           </p>
         </div>
 

@@ -18,11 +18,13 @@ import { AnimatedCounter } from './AnimatedCounter';
 interface HeroProps {
   onExploreWork: () => void;
   onContact: () => void;
+  onServiceClick: (id: string) => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({
   onExploreWork,
   onContact,
+  onServiceClick,
 }) => {
   const heroRef = useRef<HTMLElement>(null);
 
@@ -85,28 +87,25 @@ export const Hero: React.FC<HeroProps> = ({
 
   const services = [
     {
+      id: 'ux-research',
+      icon: Layers,
+      img: '/images/anime/ux_research.jpg',
+      title: 'UX Research',
+      text: 'Uncovering the "why" before building the "what" with deep user insights.',
+    },
+    {
+      id: 'ui-design',
       icon: Palette,
-      title: 'UI/UX Design',
-      text:
-        'User-centered interfaces, thoughtful layouts and intuitive experiences designed around real user needs.',
+      img: '/images/anime/ui_design.jpg',
+      title: 'UI Design',
+      text: 'Crafting pixel-perfect, accessible, and highly engaging interfaces.',
     },
     {
+      id: 'product-design',
       icon: PenTool,
-      title: 'UX Strategy',
-      text:
-        'User flows, wireframes and prototypes that turn ideas into clear, usable digital experiences.',
-    },
-    {
-      icon: Layers,
-      title: 'CMS Websites',
-      text:
-        'Modern, responsive websites built with flexible CMS solutions that are easy to manage and scale.',
-    },
-    {
-      icon: Layers,
-      title: 'Design Systems',
-      text:
-        'Consistent components, visual language and reusable patterns that keep products clear and cohesive.',
+      img: '/images/anime/product_design.jpg',
+      title: 'Product Design',
+      text: 'End-to-end strategic design linking business goals with user needs.',
     },
   ];
 
@@ -145,6 +144,8 @@ export const Hero: React.FC<HeroProps> = ({
           alt=""
           aria-hidden="true"
           referrerPolicy="no-referrer"
+          fetchPriority="high"
+          decoding="sync"
           className="
             absolute
             top-[55px]
@@ -357,36 +358,32 @@ export const Hero: React.FC<HeroProps> = ({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="
-              mb-5
-              max-w-[610px]
-              text-[3.35rem]
-              font-bold
-              leading-[0.99]
-              tracking-[-0.045em]
-              text-[#e3e0f7]
-              sm:text-[3.7rem]
-              md:text-[4rem]
-              lg:text-[4.15rem]
-              xl:text-[4.35rem]
+              mb-6
+              max-w-[700px]
+              text-3xl
+              font-extrabold
+              leading-[1.15]
+              tracking-tight
+              text-white
+              sm:text-4xl
+              md:text-5xl
+              lg:text-[3.25rem]
             "
           >
-            Designing digital
-            <br />
-            experiences that
-            <br />
+            Shaping the future of digital with{' '}
             <span
               className="
                 relative
                 inline-block
                 bg-gradient-to-r
-                from-[#16c7f7]
-                via-[#9b7cff]
-                to-[#e45cff]
+                from-[#c4b5fd]
+                via-[#d2bbff]
+                to-[#f9a8d4]
                 bg-clip-text
                 text-transparent
               "
             >
-              feel - effortless.
+              purpose-driven design.
 
               <motion.span
                 initial={{ width: 0 }}
@@ -403,9 +400,9 @@ export const Hero: React.FC<HeroProps> = ({
                   h-[3px]
                   rounded-full
                   bg-gradient-to-r
-                  from-[#16c7f7]
+                  from-[#c4b5fd]
                   via-[#7c3aed]
-                  to-[#e45cff]
+                  to-[#f9a8d4]
                 "
               />
             </span>
@@ -431,9 +428,8 @@ export const Hero: React.FC<HeroProps> = ({
             <span className="font-semibold text-[#e3e0f7]">
               Shourov
             </span>{' '}
-            — a UI/UX Designer & CMS Specialist focused on creating intuitive interfaces,
-            meaningful user journeys and polished digital experiences,
-            with CMS websites that are easy to manage and grow.
+            — a Product Designer specializing in UI design, in-depth UX research,
+            and crafting digital experiences that are both beautiful and highly functional.
           </motion.p>
 
           {/* CTA BUTTONS */}
@@ -519,8 +515,8 @@ export const Hero: React.FC<HeroProps> = ({
               grid
               w-full
               max-w-[540px]
-              grid-cols-3
-              gap-6
+              grid-cols-2
+              gap-8
               border-t
               border-white/10
               pt-5
@@ -537,7 +533,7 @@ export const Hero: React.FC<HeroProps> = ({
                   sm:text-3xl
                 "
               >
-                <AnimatedCounter value="2+" duration={1200} />
+                <AnimatedCounter key="2" value="2" duration={1200} />
               </div>
               <div
                 className="
@@ -549,7 +545,7 @@ export const Hero: React.FC<HeroProps> = ({
                   sm:text-xs
                 "
               >
-                Years experience
+                Years freelancing experience
               </div>
             </div>
 
@@ -564,7 +560,7 @@ export const Hero: React.FC<HeroProps> = ({
                   sm:text-3xl
                 "
               >
-                <AnimatedCounter value="10+" duration={1400} />
+                <AnimatedCounter key="1" value="1" duration={1400} />
               </div>
               <div
                 className="
@@ -576,34 +572,7 @@ export const Hero: React.FC<HeroProps> = ({
                   sm:text-xs
                 "
               >
-                Projects delivered
-              </div>
-            </div>
-
-            <div>
-              <div
-                className="
-                  font-mono
-                  text-2xl
-                  font-bold
-                  tracking-tight
-                  text-[#ffb0cd]
-                  sm:text-3xl
-                "
-              >
-                <AnimatedCounter value="100%" duration={1600} />
-              </div>
-              <div
-                className="
-                  mt-1
-                  text-[10px]
-                  uppercase
-                  tracking-wider
-                  text-[#958da1]
-                  sm:text-xs
-                "
-              >
-                Client satisfaction
+                Year industry experience (almost)
               </div>
             </div>
           </motion.div>
@@ -709,15 +678,16 @@ export const Hero: React.FC<HeroProps> = ({
             grid
             grid-cols-1
             gap-5
-            sm:grid-cols-2
+            sm:grid-cols-3
             lg:mt-[34px]
-            lg:grid-cols-4
+            lg:grid-cols-3
           "
         >
           {services.map(
-            ({ icon: Icon, title, text }, index) => (
+            ({ id, icon: Icon, img, title, text }, index) => (
               <motion.div
                 key={title}
+                onClick={() => onServiceClick(id)}
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -732,64 +702,56 @@ export const Hero: React.FC<HeroProps> = ({
                 className="
                   group
                   relative
-                  min-h-[154px]
+                  cursor-pointer
                   overflow-hidden
                   rounded-[22px]
                   border
                   border-[#7b8fc7]/25
-                  bg-gradient-to-br from-[#0b1835]/90 via-[#071126]/82 to-[#11143a]/72
-                  p-5
-                  backdrop-blur-md
+                  bg-[#071126]
                   transition-all
                   duration-300
-                  hover:bg-[#09142d]/85
                   hover:border-[#a878ff]/55
                   hover:shadow-[0_18px_45px_rgba(7,12,34,0.42)]
+                  min-h-[190px]
                 "
               >
-                <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-[#7c3aed]/12 blur-2xl transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="flex items-start justify-between">
-                  <span className="grid h-9 w-9 place-items-center rounded-xl border border-[#a878ff]/25 bg-[#a878ff]/10 text-[#cbb8ff] transition-transform duration-300 group-hover:scale-105">
-                    <Icon className="h-5 w-5" />
-                  </span>
-
-                  <ArrowUpRight
-                    className="
-                      h-4
-                      w-4
-                      text-[#68769b]
-                      transition-all
-                      duration-300
-                      group-hover:-translate-y-0.5
-                      group-hover:translate-x-0.5
-                      group-hover:text-[#d2bbff]
-                    "
-                  />
+                {/* Right-aligned Background Image */}
+                <div className="absolute inset-y-0 right-0 w-[65%] sm:w-[60%] overflow-hidden">
+                  {img && (
+                    <img 
+                      src={img} 
+                      alt={title} 
+                      className="h-full w-full object-cover object-center opacity-70 transition-all duration-700 group-hover:scale-110 group-hover:opacity-100" 
+                    />
+                  )}
+                  {/* Blend gradients so text is readable */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#071126] via-[#071126]/70 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#071126]/80 via-transparent to-transparent" />
                 </div>
 
-                <h3
-                  className="
-                    mt-4
-                    text-[15px]
-                    font-semibold
-                    tracking-[-0.01em]
-                    text-[#e3e0f7]
-                  "
-                >
-                  {title}
-                </h3>
+                {/* Content Overlay */}
+                <div className="relative z-10 p-6 flex flex-col h-full justify-between">
+                  <div className="flex items-start justify-between mb-8">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-[#a878ff]/25 bg-[#a878ff]/10 text-[#cbb8ff] backdrop-blur-md">
+                      <Icon className="h-5 w-5" />
+                    </span>
 
-                <p
-                  className="
-                    mt-2
-                    max-w-[600px]
-                    text-[12px]
-                    leading-[1.55]
-                    text-[#aeb7d1]
-                  "
-                >
-                  {text}
-                </p>
+                    <div className="h-8 w-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10 transition-colors group-hover:bg-[#7c3aed]/50 shrink-0 backdrop-blur-sm">
+                      <ArrowUpRight
+                        className="h-4 w-4 text-white transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="mb-2 text-[18px] font-bold tracking-tight text-[#e3e0f7] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                      {title}
+                    </h3>
+                    <p className="max-w-[90%] sm:max-w-[80%] text-[13px] leading-relaxed text-[#ccc3d8] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                      {text}
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             )
           )}
