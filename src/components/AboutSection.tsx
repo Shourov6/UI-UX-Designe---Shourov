@@ -119,7 +119,7 @@ export const AboutSection: React.FC = () => {
             className="relative min-h-[250px] overflow-hidden rounded-3xl border border-[#7c3aed]/35 bg-[#121221]/80"
           >
             <img
-              src="https://i.imgur.com/FuHguYi.png"
+              src="https://i.imgur.com/3QTTSwi.png"
               alt="Shourov, Product Designer"
               className="h-full w-full object-cover object-[58%_18%]"
               referrerPolicy="no-referrer"

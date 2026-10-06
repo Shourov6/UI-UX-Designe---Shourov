@@ -51,17 +51,15 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ activeSection, onNavigate 
         initial={{ y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 260, damping: 25 }}
-        className={`fixed left-1/2 top-4 z-50 -translate-x-1/2 transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          scrolled ? 'w-[min(92%,780px)]' : 'w-[min(94%,920px)]'
-        }`}
+        className={`fixed left-1/2 top-4 z-50 -translate-x-1/2 transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${scrolled ? 'w-[min(92%,780px)]' : 'w-[min(94%,920px)]'
+          }`}
       >
         <nav
           aria-label="Global Navigation"
-          className={`flex w-full items-center justify-between rounded-full border transition-[padding,background-color,box-shadow,border-color,backdrop-filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            scrolled
+          className={`flex w-full items-center justify-between rounded-full border transition-[padding,background-color,box-shadow,border-color,backdrop-filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${scrolled
               ? 'border-white/15 bg-[#08132c]/72 px-3 py-2 shadow-[0_16px_45px_rgba(0,0,0,0.35)] backdrop-blur-2xl'
               : 'border-transparent bg-transparent px-4 py-2.5 shadow-none backdrop-blur-0'
-          }`}
+            }`}
         >
           {/* Brand Logo / Monogram with subtle 3D spin on hover */}
           <motion.button
@@ -84,9 +82,8 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ activeSection, onNavigate 
                 <button
                   key={link.id}
                   onClick={() => handleLinkClick(link.id)}
-                    className={`relative rounded-full px-3.5 py-1.5 text-[0.85rem] font-medium transition-colors duration-200 focus:outline-none cursor-pointer ${
-                    isActive ? 'text-[#e3e0f7] font-semibold' : 'text-[#958da1] hover:text-[#e3e0f7]'
-                  }`}
+                  className={`relative rounded-full px-3.5 py-1.5 text-[0.85rem] font-medium transition-colors duration-200 focus:outline-none cursor-pointer ${isActive ? 'text-[#e3e0f7] font-semibold' : 'text-[#958da1] hover:text-[#e3e0f7]'
+                    }`}
                 >
                   {link.label}
                   {isActive && (
@@ -137,37 +134,36 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ activeSection, onNavigate 
         {/* Mobile Drawer with smooth animation */}
         <AnimatePresence>
           {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden px-6 pt-2 pb-6 border-t border-white/10 rounded-b-3xl bg-[#121221]/95 backdrop-blur-2xl flex flex-col gap-3"
-          >
-            {navLinks.map((link, index) => (
-              <motion.button
-                key={link.id}
-                initial={{ opacity: 0, x: -12 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -12 }}
-                transition={{ delay: index * 0.04 }}
-                onClick={() => handleLinkClick(link.id)}
-                className={`text-left py-2 px-3 rounded-xl text-sm font-medium transition-all ${
-                  activeSection === link.id
-                    ? 'bg-[#7c3aed]/20 text-[#d2bbff] font-semibold border border-[#7c3aed]/30'
-                    : 'text-[#ccc3d8] hover:bg-white/5'
-                }`}
-              >
-                {link.label}
-              </motion.button>
-            ))}
-            <button
-              onClick={() => handleLinkClick('contact')}
-              className="w-full mt-2 py-2.5 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#3626ce] text-white text-center text-sm font-semibold flex items-center justify-center gap-2"
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden px-6 pt-2 pb-6 border-t border-white/10 rounded-b-3xl bg-[#121221]/95 backdrop-blur-2xl flex flex-col gap-3"
             >
-              <ArrowRight className="w-4 h-4" />
-              <span>Get in Touch</span>
-            </button>
-          </motion.div>
+              {navLinks.map((link, index) => (
+                <motion.button
+                  key={link.id}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -12 }}
+                  transition={{ delay: index * 0.04 }}
+                  onClick={() => handleLinkClick(link.id)}
+                  className={`text-left py-2 px-3 rounded-xl text-sm font-medium transition-all ${activeSection === link.id
+                      ? 'bg-[#7c3aed]/20 text-[#d2bbff] font-semibold border border-[#7c3aed]/30'
+                      : 'text-[#ccc3d8] hover:bg-white/5'
+                    }`}
+                >
+                  {link.label}
+                </motion.button>
+              ))}
+              <button
+                onClick={() => handleLinkClick('contact')}
+                className="w-full mt-2 py-2.5 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#3626ce] text-white text-center text-sm font-semibold flex items-center justify-center gap-2"
+              >
+                <ArrowRight className="w-4 h-4" />
+                <span>Get in Touch</span>
+              </button>
+            </motion.div>
           )}
         </AnimatePresence>
       </motion.header>

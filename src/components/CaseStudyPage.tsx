@@ -71,7 +71,7 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ project, onBack })
             <img
               src={project.image}
               alt={project.title}
-              className="w-full object-cover"
+              className="w-full h-auto"
               referrerPolicy="no-referrer"
               fetchPriority="high"
               decoding="sync"

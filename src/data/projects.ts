@@ -40,6 +40,43 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 'nova-bank-uiux',
+    title: 'NOVA Bank App- UI/UX',
+    description: 'Premium Mobile Banking App for a modern Bangladeshi commercial bank. Designed with a focus on trust, security, simplicity, and human-centered digital convenience.',
+    techStack: ['Figma', 'UI/UX', 'Fintech', 'Mobile Design'],
+    link: 'https://www.behance.net/gallery/256674557/Banking-App',
+    githubLink: '#',
+    image: 'https://i.imgur.com/74At7Eb.png',
+    category: 'uiux',
+    caseStudy: {
+      role: 'Product Designer',
+      duration: '4 weeks',
+      outcome: 'Designed 30+ premium, production-ready screens for a complete mobile banking application',
+      challenge: 'Combining traditional banking trust with digital convenience for the Bangladeshi market',
+      problemStatement: 'Existing Bangladeshi banking apps often feel old-fashioned, cluttered, and lack the premium feel of modern international fintech products. Users need a secure, fast, and intuitive app that is accessible to first-time digital banking users while looking world-class and trustworthy.',
+      solutionApproach: 'Created a unique visual identity for NOVA Bank using Deep Emerald Green (#075B4A) and clean typography (Inter). Designed a minimal, human-centered UI with strong visual hierarchy. Features include a clear dashboard, quick actions, simplified transfers to local banks and wallets (bKash, Nagad), utility bill payments, and biometric security.',
+      processSteps: [
+        { phase: 'Strategy', title: 'Brand & UX Direction', description: 'Defined the NOVA Bank brand identity (Trust + Security + Simplicity) and established the deep emerald green color system. Formulated UX principles prioritizing clarity, speed, and accessibility.', deliverables: ['Brand guidelines', 'Color palette', 'UX Strategy'] },
+        { phase: 'Design', title: 'Component System', description: 'Built a mobile-first design system with accessible touch targets, consistent iconography, and clear feedback states. Ensured the interface remains mostly white with subtle green accents.', deliverables: ['Design system', 'UI components', 'Typography scale'] },
+        { phase: 'Prototyping', title: 'High-Fidelity Screens', description: 'Designed 30+ complete screens covering onboarding, dashboard, transfers, payments, card management, branch locator, and comprehensive security settings.', deliverables: ['30+ UI screens', 'Empty/Error states', 'Interactive prototype'] },
+      ],
+      userFlow: [
+        { step: 1, label: 'Onboarding & Auth', description: 'User views value propositions and logs in securely with biometrics or PIN.' },
+        { step: 2, label: 'Dashboard', description: 'User sees available balance, quick actions (Send Money, Pay Bill), and recent transactions at a glance.' },
+        { step: 3, label: 'Transfer Money', description: 'User selects recipient (NOVA, Other Bank, Mobile Wallet), enters amount, and confirms with security PIN.' },
+        { step: 4, label: 'Payments & Recharge', description: 'User pays local utility bills (DESCO, WASA, etc.) or recharges mobile balance with automatic operator detection.' },
+        { step: 5, label: 'Card Management', description: 'User manages their Visa Debit card, sets spending limits, or freezes the card directly from the app.' },
+      ],
+      impactMetrics: [
+        { label: 'Screens Designed', value: '30+', description: 'Comprehensive coverage of all core banking features and states' },
+        { label: 'Color System', value: 'Emerald', description: 'Deep Emerald Green for trust, security, and premium feel' },
+        { label: 'Local UX', value: '100%', description: 'Tailored for Bangladeshi payment behaviors (MFS, local utilities)' },
+      ],
+      keyFeatures: ['Biometric login', 'Dashboard with quick actions', 'Local bank & wallet transfers', 'Utility bill payments', 'Card management', 'Security alerts', 'Branch & ATM locator'],
+      lessonsLearned: 'Designing for the Bangladeshi financial market requires balancing international premium aesthetics with local context. Trust is built through clarity\u2014showing exact fees, providing satisfying success screens, and keeping important financial information immediately visible without cluttering the interface.',
+    },
+  },
+  {
     id: 'healthcare-website-uiux',
     title: 'Healthcare Website - UI/UX',
     description:
@@ -117,6 +154,50 @@ export const projects: Project[] = [
       ],
       keyFeatures: ['AI health assistant chatbot', 'Specialty browsing', 'Location-based doctor search', 'Appointment management', 'Health records', 'Push notification reminders'],
       lessonsLearned: 'Mobile healthcare apps need aggressive information prioritization. The AI assistant needed careful UX guardrails to avoid giving medical advice while still being helpful. Bottom navigation with 5 tabs was the sweet spot for discoverability without overwhelm.',
+    },
+  },
+  {
+    id: 'nova-bank-admin-dashboard-uiux',
+    title: 'NOVA Bank — Admin Dashboard — UI/UX',
+    description: 'A comprehensive enterprise banking admin dashboard designed to give NOVA Bank\'s internal teams a centralized platform for managing customers, accounts, transactions, cards, KYC, and operations.',
+    techStack: ['Figma', 'UI/UX', 'Admin Dashboard', 'Fintech'],
+    link: 'https://www.figma.com/proto/DrAbTFlBenf7Pg7tutvbHg/Personl?node-id=6-7533&p=f&t=N3WSfPKKrTqrW8JR-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',
+    githubLink: '#',
+    image: 'https://i.imgur.com/HRU2KFp.png',
+    category: 'uiux',
+    caseStudy: {
+      role: 'Lead UI/UX Designer',
+      duration: '6 weeks',
+      outcome: 'Created a centralized banking operations platform that organizes complex financial data into clear workflows, enabling administrators to monitor transactions and manage customers efficiently.',
+      challenge: 'Designing an enterprise banking system capable of handling large amounts of sensitive financial and customer information without overwhelming administrators. The challenge was to create clear information hierarchies, efficient data-management workflows, and strong security interactions.',
+      problemStatement: 'Managing a modern bank requires handling immense amounts of sensitive data across multiple departments. Existing systems are often fragmented, outdated, and require administrators to switch between multiple software tools to complete simple tasks like KYC verification or fraud monitoring.',
+      solutionApproach: 'Designed a unified, role-based admin dashboard that brings all banking operations into a single platform. The interface uses clear data visualization, structured tables, and streamlined workflows to help teams process KYC applications, monitor transactions, and manage user accounts efficiently.',
+      processSteps: [
+        { phase: 'Discovery', title: 'Operational Research', description: 'Interviewed banking operational staff to understand their daily workflows, pain points, and data requirements.', deliverables: ['Workflow diagrams', 'User roles matrix'] },
+        { phase: 'Design', title: 'Dashboard & Workflows', description: 'Created a modular design system for the admin panel, focusing on data density, readability, and clear actions.', deliverables: ['Component library', 'High-fidelity screens'] },
+        { phase: 'Prototyping', title: 'Interactive Workflows', description: 'Built prototypes for key tasks like KYC approval and transaction monitoring to validate efficiency with stakeholders.', deliverables: ['Interactive prototype', 'Usability feedback'] }
+      ],
+      userFlow: [
+        { step: 1, label: 'Secure Login', description: 'Admin logs in with role-based access control and 2FA.' },
+        { step: 2, label: 'Global Dashboard', description: 'Views high-level metrics, pending KYC requests, and active security alerts.' },
+        { step: 3, label: 'Customer Management', description: 'Searches for a user, views their profile, accounts, and transaction history.' },
+        { step: 4, label: 'Task Processing', description: 'Reviews a pending KYC application and approves/rejects with comments.' },
+        { step: 5, label: 'Reporting', description: 'Generates and exports an operational report for the compliance team.' }
+      ],
+      impactMetrics: [
+        { label: 'Workflows', value: 'Centralized', description: 'Brought 10+ fragmented banking operations into one platform' },
+        { label: 'Roles', value: 'Defined', description: 'Created specific views for different banking departments' },
+        { label: 'Efficiency', value: 'Increased', description: 'Streamlined data-management and approval processes' }
+      ],
+      keyFeatures: [
+        'Banking operations dashboard',
+        'Customer profile and account management',
+        'KYC verification and document review',
+        'Transaction monitoring',
+        'Fraud monitoring and security',
+        'AML and compliance workflows'
+      ],
+      lessonsLearned: 'Designing enterprise software requires a deep understanding of the user\'s daily tasks. Information density is crucial—administrators need to see a lot of data at once, but it must be organized logically with clear visual hierarchies to prevent cognitive overload.',
     },
   },
   {

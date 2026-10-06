@@ -107,7 +107,7 @@ export const ProjectsShowcase: React.FC<ProjectsShowcaseProps> = ({ limit, onVie
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="h-full w-full object-contain transition-transform duration-700 ease-out group-hover:scale-105"
                   loading="lazy"
                   decoding="async"
                   referrerPolicy="no-referrer"
