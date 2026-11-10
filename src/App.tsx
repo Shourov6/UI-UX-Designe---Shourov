@@ -10,21 +10,42 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { CaseStudyPage } from './components/CaseStudyPage';
 import { ServicePage } from './components/ServicePage';
+import { ResumePage } from './components/ResumePage';
 import { ParticleNetwork } from './components/ParticleNetwork';
 import { LoadingScreen } from './components/LoadingScreen';
-import { type Project } from './data/projects';
+import { type Project, projects } from './data/projects';
 import { ArrowLeft } from 'lucide-react';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState<string>('hero');
-  const [currentView, setCurrentView] = useState<'home' | 'all-projects' | 'case-study' | 'service-page'>('home');
+  const [currentView, setCurrentView] = useState<'home' | 'all-projects' | 'case-study' | 'service-page' | 'resume'>('home');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedService, setSelectedService] = useState<'ux-research' | 'ui-design' | 'product-design' | null>(null);
 
-  // Handle Browser History (Back/Forward buttons)
+  // Handle Browser History & Initial URL query params
   useEffect(() => {
-    // Set initial state if none exists
-    if (!window.history.state) {
+    const params = new URLSearchParams(window.location.search);
+    const viewParam = params.get('view') as 'home' | 'all-projects' | 'case-study' | 'service-page' | 'resume' | null;
+    const idParam = params.get('id');
+
+    if (viewParam === 'case-study' && idParam) {
+      const proj = projects.find((p) => p.id === idParam);
+      if (proj) {
+        setCurrentView('case-study');
+        setSelectedProject(proj);
+        window.history.replaceState({ view: 'case-study', payload: proj }, '', window.location.href);
+      }
+    } else if (viewParam === 'all-projects') {
+      setCurrentView('all-projects');
+      window.history.replaceState({ view: 'all-projects', payload: null }, '', window.location.href);
+    } else if (viewParam === 'service-page' && idParam) {
+      setCurrentView('service-page');
+      setSelectedService(idParam as any);
+      window.history.replaceState({ view: 'service-page', payload: idParam }, '', window.location.href);
+    } else if (viewParam === 'resume') {
+      setCurrentView('resume');
+      window.history.replaceState({ view: 'resume', payload: null }, '', window.location.href);
+    } else if (!window.history.state) {
       window.history.replaceState({ view: 'home', payload: null }, '', window.location.pathname);
     }
 
@@ -50,7 +71,7 @@ export default function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  const navigateTo = (view: 'home' | 'all-projects' | 'case-study' | 'service-page', payload?: any) => {
+  const navigateTo = (view: 'home' | 'all-projects' | 'case-study' | 'service-page' | 'resume', payload?: any) => {
     setCurrentView(view);
     if (view === 'case-study') setSelectedProject(payload);
     else if (view === 'service-page') setSelectedService(payload);
@@ -149,7 +170,7 @@ export default function App() {
 
       {/* Floating Top Navigation */}
       {currentView === 'home' && (
-        <TopNavBar activeSection={activeSection} onNavigate={scrollToSection} />
+        <TopNavBar activeSection={activeSection} onNavigate={scrollToSection} onResumeClick={() => navigateTo('resume')} />
       )}
 
       {currentView === 'home' ? (
@@ -200,6 +221,24 @@ export default function App() {
             serviceId={selectedService}
             onBack={() => navigateTo('home')}
             onNavigateToService={(id) => navigateTo('service-page', id)}
+          />
+          <div className="mt-auto">
+            <Footer onNavigate={(id) => {
+              navigateTo('home');
+              setTimeout(() => scrollToSection(id), 100);
+            }} />
+          </div>
+        </main>
+      ) : currentView === 'resume' ? (
+        <main className="relative z-10 min-h-screen flex flex-col">
+          <ResumePage
+            onBack={() => navigateTo('home')}
+            onViewProjects={() => navigateTo('all-projects')}
+            onCaseStudy={(projectId) => {
+              const proj = projects.find((p) => p.id === projectId);
+              if (proj) navigateTo('case-study', proj);
+              else navigateTo('all-projects');
+            }}
           />
           <div className="mt-auto">
             <Footer onNavigate={(id) => {

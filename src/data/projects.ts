@@ -11,6 +11,43 @@ export interface ProcessStep {
   deliverables: string[];
 }
 
+export interface VisualPrinciple {
+  title: string;
+  tagline: string;
+  description: string;
+  badges?: string[];
+}
+
+export interface ColorToken {
+  role: string;
+  hex: string;
+  intent: string;
+}
+
+export interface TypographySpec {
+  level: string;
+  specs: string;
+}
+
+export interface BilingualStrategyItem {
+  title: string;
+  description: string;
+}
+
+export interface ArchitecturalPattern {
+  number: string;
+  title: string;
+  screenRefs: string;
+  description: string;
+  features: string[];
+}
+
+export interface ImpactCohesionItem {
+  label: string;
+  metric: string;
+  description: string;
+}
+
 export interface CaseStudy {
   role: string;
   duration: string;
@@ -24,7 +61,26 @@ export interface CaseStudy {
   impactMetrics: { label: string; value: string; description: string }[];
   keyFeatures: string[];
   lessonsLearned: string;
+  // Sovereign Enterprise / Rich Case Study fields
+  subtitle?: string;
+  executiveSummary?: string;
+  corePrinciples?: VisualPrinciple[];
+  colorTokens?: ColorToken[];
+  typographySpecs?: TypographySpec[];
+  bilingualStrategy?: BilingualStrategyItem[];
+  architecturalPatterns?: ArchitecturalPattern[];
+  impactCohesion?: ImpactCohesionItem[];
+  conclusion?: string;
 }
+
+export type ProjectCategory = 'app' | 'website' | 'dashboard' | 'landing-page';
+
+export const categoryLabels: Record<ProjectCategory, string> = {
+  app: 'App',
+  website: 'Website',
+  dashboard: 'Dashboard',
+  'landing-page': 'Landing page',
+};
 
 export interface Project {
   id: string;
@@ -34,11 +90,231 @@ export interface Project {
   link: string;
   githubLink: string;
   image: string;
-  category: 'uiux' | 'cms';
+  category: ProjectCategory;
   caseStudy: CaseStudy;
 }
 
 export const projects: Project[] = [
+  {
+    id: 'orbit-ai-design-system',
+    title: 'ORBIT AI — Sovereign Enterprise AI Workspace',
+    description: 'Bangladesh’s first sovereign enterprise AI workspace design system, spanning 38+ screens across desktop and mobile, engineered for statutory compliance, bilingual Bangla-English NLP, and domestic data residency.',
+    techStack: ['Figma', 'Design System', 'Enterprise AI', 'Bilingual UI/UX', 'Fintech & Gov'],
+    link: 'https://www.behance.net/gallery/258314983/ORBIT-AI-Sovereign-Enterprise-AI-Workspace',
+    githubLink: '#',
+    image: 'https://i.imgur.com/QB3X4wT.png',
+    category: 'dashboard',
+    caseStudy: {
+      role: 'Lead Product & Design Systems Architect',
+      duration: '8 weeks',
+      outcome: 'Architected 38+ screens with 100% design system continuity, compliant with Bangladesh Bank ICT 3.0 & NBR Mushak 6.3',
+      challenge: 'Unifying multi-modal Bengali linguistics, statutory tax compliance, and sub-15ms domestic telemetry without generic Western SaaS templates',
+      subtitle: 'Architecting a Sovereign Enterprise AI Platform for Bangladesh',
+      executiveSummary: 'ORBIT AI is Bangladesh’s first sovereign enterprise AI workspace, engineered to bridge unstructured corporate information—faded paper VAT challans, WhatsApp voice memos, legacy ERP databases, and dual-language legal instruments—into deterministic, audit-ready operational action.\n\nTo support an expansive ecosystem spanning 38+ screens across desktop and mobile (including core foundational products, specialized departmental agents, statutory compliance dashboards, developer documentation, and industry solutions), the product required a unified, robust, and culturally attuned Design System: ORBIT AI Workspace (DESIGN_SYSTEM_1).\n\nThis case study breaks down the design strategy, typographic hierarchy, color chemistry, layout rhythm, component architecture, and bilingual information design that enabled ORBIT AI to communicate uncompromising enterprise rigor and futuristic technological capability.',
+      problemStatement: 'Most B2B SaaS platforms adopt generic Western templates: clean white cards, English-centric typography, standard credit card billing patterns, and generic conversational chat shells. For a mission-critical platform operating in Bangladesh:\n\n1. Linguistic Complexity: Real corporate communication in Bangladesh is multi-modal and fluid—interleaving formal Shuddho Bangla, colloquial factory floor terms, phonetic English transliterations ("Banglish"), and specialized Bengali compound conjunct ligatures (যুক্তবর্ণ).\n\n2. Statutory & Operational Rigor: Enterprises require strict auditability under Bangladesh Bank ICT Security Guideline 3.0, National Board of Revenue (NBR) Mushak 6.3 tax compliance, and zero data egress beyond domestic BGD-IX peering nodes.\n\n3. Cognitive Fatigue: Traditional SaaS grids become monotonous across 30+ pages. The interface needed to alternate strategically between high-density operational cockpits and cinematic, inspiring storytelling without compromising scanability.',
+      solutionApproach: 'Engineered ORBIT AI Workspace (DESIGN_SYSTEM_1)—a sovereign design system reconciling deep institutional trust with electric generative AI intelligence. Structured around high-density operational cockpits, an intentional light-to-dark atmospheric rhythm, bilingual typographic scaling with Bengali ligature accommodation (+8% optical line-height), and repeatable architectural modules (Tri-Pane Document Cockpit, Multi-Agent Swarm Cluster, Sovereign Latency & Peering Visualizer, and BDT Token & Forex Savings Calculator).',
+      processSteps: [
+        {
+          phase: 'Discovery & Auditing',
+          title: 'Sovereignty & Statutory Compliance',
+          description: 'Audited regulatory constraints under Bangladesh Bank ICT Security Guideline 3.0, NBR Mushak 6.3 VAT requirements, and domestic BGD-IX routing latency needs across Bangladeshi enterprises.',
+          deliverables: ['Regulatory audit matrix', 'Domestic latency benchmarks', 'Bilingual text corpus analysis']
+        },
+        {
+          phase: 'Tokenomics & Color',
+          title: 'Atmospheric Rhythm & Visual Hierarchy',
+          description: 'Formulated the tokenomic palette balancing Deep Void dark zones (#0B1020) for telemetry and AI swarms with Precision Light Workspaces (#FFFFFF/#F8FAFC) for high-density document audits.',
+          deliverables: ['Color token system', 'Contrast & accessibility matrix', 'Dark/light atmospheric pacing guide']
+        },
+        {
+          phase: 'Architecture',
+          title: 'Bilingual Typography & Component Library',
+          description: 'Engineered typography combining Inter glyphs with specialized Bengali rendering calibrated for compound ligatures (+8% line height), plus reusable tri-pane cockpits and agent clusters.',
+          deliverables: ['Bilingual type scale', 'Tri-pane cockpit components', 'Multi-agent card patterns']
+        },
+        {
+          phase: 'Prototyping',
+          title: 'Cross-Form Factor Parity & Telemetry',
+          description: 'Designed and prototyped 38+ enterprise desktop and mobile surfaces, integrating real-time regional node latency visualizers (Dhaka, Chittagong, Sylhet) and BDT token calculators.',
+          deliverables: ['38+ desktop & mobile screens', 'Interactive telemetry prototypes', 'Design system documentation']
+        }
+      ],
+      userFlow: [
+        {
+          step: 1,
+          label: 'Sovereign Auth & Enclave Verification',
+          description: 'User enters the air-gapped workspace, verified against local BGD-IX peering nodes with sub-15ms domestic latency telemetry.'
+        },
+        {
+          step: 2,
+          label: 'Document Ingestion & Tri-Pane Cockpit',
+          description: 'Uploads unstructured paperwork (faded Mushak 6.3 VAT challans, WhatsApp audio, CIB reports) into the synchronized tri-pane cockpit.'
+        },
+        {
+          step: 3,
+          label: 'Multi-Agent Swarm Processing',
+          description: 'Bangla NLP engine, NBR Tax Agent, and Procurement Agent execute zero-hallucination extraction and ERP synchronization.'
+        },
+        {
+          step: 4,
+          label: 'Statutory Audit & Discrepancy Log',
+          description: 'Live validation checkmarks verify compliance against Bangladesh Bank 3.0 & NBR rules, flagging discrepancy alerts in amber.'
+        },
+        {
+          step: 5,
+          label: 'Deterministic Action & Ledger Sync',
+          description: 'Exports audit-ready JSON schemas, commits records to domestic ERPs (SAP/Tally), and updates BDT financial ledger.'
+        }
+      ],
+      impactMetrics: [
+        {
+          label: 'Ecosystem Scale',
+          value: '38+ Screens',
+          description: 'Complete enterprise coverage across desktop cockpits and responsive mobile interfaces'
+        },
+        {
+          label: 'Domestic Latency',
+          value: '<15ms',
+          description: 'Zero international data egress via domestic BGD-IX peering nodes (Dhaka, CTG, Sylhet)'
+        },
+        {
+          label: 'Design Continuity',
+          value: '100%',
+          description: 'Unified visual continuity and token reuse across navigation, components, and telemetry'
+        }
+      ],
+      keyFeatures: [
+        'Tri-Pane Document Cockpit',
+        'Autonomous Multi-Agent Swarm Cluster',
+        'Sovereign Latency & Peering Visualizer',
+        'BDT Token & Forex Savings Calculator',
+        'Bilingual Shuddho Bangla Typography Scale (+8% optical line-height)',
+        'Atmospheric Rhythm (Light ↔ Dark Pacing)',
+        'Bangladesh Bank ICT 3.0 & NBR Mushak 6.3 Compliance Badges',
+        'Air-Gapped Enclave Telemetry'
+      ],
+      lessonsLearned: 'Designing for high-stakes enterprise applications in emerging regional markets requires grounding the interface in statutory realities rather than cosmetic Silicon Valley tropes. When auditability, linguistic nuance (যুক্তবর্ণ), and local latency guarantees are embedded directly into foundational design tokens, user trust scales exponentially.',
+      corePrinciples: [
+        {
+          title: 'Sovereignty by Design',
+          tagline: 'Domestic Security & Latency',
+          description: 'Every visual token reinforces domestic security, local latency (<15ms via BGD-IX), and institutional trust. Visual accents incorporate telemetry indicators directly into card headers and badges.',
+          badges: ['Dhaka DC-1 Kaliakair', 'Mohakhali Tier-IV Node', '99.98% SLA', 'Air-Gapped Enclave']
+        },
+        {
+          title: 'High-Fidelity Information Density',
+          tagline: 'The Cockpit Standard',
+          description: 'Rather than abstracting complexity away with empty whitespace, ORBIT AI embraces structured enterprise density. Complex data tables, tripartite split-screens, and cryptographic provenance hashes are treated as primary design elements.',
+          badges: ['Document Preview', 'Parsed JSON Schema', 'Discrepancy Log']
+        },
+        {
+          title: 'Atmospheric Rhythm',
+          tagline: 'Light ↔ Dark Pacing',
+          description: 'Rejects uniform white layouts in favor of an intentional rhythm: Cinematic Dark Zones (#0B1020 / #111827) for hero storytelling & server maps; Precision Light Workspaces (#FFFFFF / #F8FAFC) for document analysis; Soft Accents (#EEF2FF) for seamless transitions.',
+          badges: ['Cinematic Dark Zones', 'Precision Light Workspaces', 'Atmospheric Accents']
+        },
+        {
+          title: 'The Orbital Signature',
+          tagline: 'Trajectory & Movement',
+          description: 'Concentric glowing orbital rings representing the operational trajectory: Knowledge → Intelligence → Action, complemented by multi-layered floating contextual pill-cards orbiting product viewports.',
+          badges: ['Knowledge → Intelligence → Action', 'CSAT +18%', 'Bangla NLP 1.2s']
+        }
+      ],
+      colorTokens: [
+        { role: 'Primary Ink', hex: '#111827', intent: 'Primary typography, dark container surfaces, high-contrast badges' },
+        { role: 'Deep Void', hex: '#0B1020', intent: 'Hero backdrops, server enclave terminal frames, code editors' },
+        { role: 'AI Violet', hex: '#635BFF', intent: 'Primary brand accent, verified status indicators, interactive CTAs' },
+        { role: 'Electric Indigo', hex: '#4F46E5', intent: 'Active pipeline flows, focused states, primary links' },
+        { role: 'Cyan Glow', hex: '#06B6D4', intent: 'Real-time telemetry, WebSocket streaming badges, speed metrics' },
+        { role: 'Sovereign Emerald', hex: '#10B981', intent: 'Statutory compliance passed, zero-hallucination verification, BDT ledger sync' },
+        { role: 'Alert Amber', hex: '#F59E0B', intent: 'NBR tax discrepancies, CIB threshold warnings, HITL (human-in-the-loop) pause' },
+        { role: 'Surface Low', hex: '#F8FAFC', intent: 'Main canvas background, secondary card backing' },
+        { role: 'Outline Subtle', hex: '#E5E7EB', intent: '1px clean architectural boundaries, grid dividers' }
+      ],
+      typographySpecs: [
+        { level: 'Display Large', specs: '48px - 56px / Line Height 1.1 / Bold / Tracking -0.02em (Hero Titles)' },
+        { level: 'Display Medium', specs: '32px - 36px / Line Height 1.2 / Semi-Bold / Tracking -0.015em (Section Headlines)' },
+        { level: 'Heading Sm/Md', specs: '20px - 24px / Line Height 1.3 / Medium to Semi-Bold' },
+        { level: 'Body Standard', specs: '15px - 16px / Line Height 1.6 / Regular (Content & Case Studies)' },
+        { level: 'Telemetry & Code', specs: '12px - 13px / JetBrains Mono / Space Grotesk / Tabular Numerals' },
+        { level: 'Statutory Pills', specs: '11px - 12px / Line Height 1.0 / Semibold / Uppercase Tracking +0.05em' }
+      ],
+      bilingualStrategy: [
+        {
+          title: 'Proportional Scaling for Bengali Conjunct Ligatures (যুক্তবর্ণ)',
+          description: 'Bengali scripts feature higher visual ascenders and complex compound conjunct ligatures. The design system dynamically calibrates optical line heights by +8% when rendering mixed bilingual strings (e.g., "চালান নং CH-2024-9982 • HS Code 6109.10") to eliminate glyph clipping.'
+        },
+        {
+          title: 'Currency & Stat Localization (BDT / Lakh / Crore)',
+          description: 'Standardized formatting for Bangladeshi Taka (৳ 1,85,000 / month, ৳ 42.8 Crore ARR) alongside localized South Asian numbering scales (Lakh, Crore) for instant comprehension by domestic CFOs and procurement officers.'
+        }
+      ],
+      architecturalPatterns: [
+        {
+          number: '01',
+          title: 'The Tri-Pane Document Cockpit',
+          screenRefs: 'SCREEN_16, SCREEN_31, SCREEN_2',
+          description: 'Engineered for high-volume Document Intelligence and Statutory VAT Ingestion, replacing fragmented paper-handling with synchronized live verification.',
+          features: [
+            'Left Pane: High-resolution visual canvas displaying original scanned paperwork with SVG bounding-box overlays (Mushak 6.3, Bill of Entry, CIB Report)',
+            'Center Pane: Synchronous live JSON / Tabular schema parsed by the sovereign Bangla-OCR engine with character-level confidence scores',
+            'Right Pane: Real-time audit trail and statutory compliance checklist with automated Bangladesh Bank & NBR validation checkmarks'
+          ]
+        },
+        {
+          number: '02',
+          title: 'The Multi-Agent Swarm Cluster',
+          screenRefs: 'SCREEN_29, SCREEN_2, SCREEN_3',
+          description: 'Visualizes autonomous digital coworkers collaborating seamlessly across enterprise workflows with live telemetry and integration status.',
+          features: [
+            'Modular digital coworkers: Bangla Customer Agent, NBR Statutory Tax Agent, Textile Procurement Agent, and Workforce & bKash Payroll',
+            'Live telemetry status indicators: Active state, 99.2% Grounded, and <350ms response latency badges',
+            'Integrated API badge chains connecting directly to Tally Prime, SAP S/4HANA, and bKash Merchant infrastructure'
+          ]
+        },
+        {
+          number: '03',
+          title: 'Sovereign Latency & Peering Visualizer',
+          screenRefs: 'SCREEN_9, SCREEN_34',
+          description: 'Interactive regional network probes providing undeniable cryptographic proof of domestic data residency and ultra-low edge latency.',
+          features: [
+            'Dhaka Central Node (Kalyanpur/Mohakhali): 12ms - 28ms real-time benchmark ping',
+            'Chittagong Port Node (Agrabad C/A): 34ms - 46ms commercial trade line latency',
+            'Sylhet Regional Corridor: 42ms - 58ms local routing with 0ms international data egress'
+          ]
+        },
+        {
+          number: '04',
+          title: 'BDT Token & Forex Savings Calculator',
+          screenRefs: 'SCREEN_10, SCREEN_33',
+          description: 'Interactive financial calculator demonstrating tangible ROI by computing synthetic token volume against customs invoices.',
+          features: [
+            'Dual-slider interaction balancing monthly synthetic token consumption and customs challan volume',
+            'Quantifies direct cost avoidance of the 15% offshore withholding tax and foreign credit card transaction overhead',
+            'Demonstrates measurable operational ROI directly aligned with Bangladeshi corporate fiscal policies'
+          ]
+        }
+      ],
+      impactCohesion: [
+        {
+          label: 'Design System Reuse',
+          metric: '100%',
+          description: 'Flawless visual continuity across navigation, footers, typography, telemetry badges, and card borders throughout the 38-screen lifecycle.'
+        },
+        {
+          label: 'Cross-Form Factor Parity',
+          metric: 'Desktop ↔ Mobile',
+          description: 'Seamless translation of dense desktop enterprise cockpits into responsive mobile touch surfaces (SCREEN_39 - SCREEN_43) without sacrificing audit indicators.'
+        },
+        {
+          label: 'Market Reception',
+          metric: 'Institutional Trust',
+          description: 'Elevated ORBIT AI into an authoritative, institutional-grade brand positioned alongside tier-1 global enterprise software while rooted firmly in Bangladesh’s commercial reality.'
+        }
+      ],
+      conclusion: 'The ORBIT AI Workspace Design System demonstrates that specialized regional enterprise tools do not need to mimic generic Silicon Valley templates. By infusing local statutory workflows, bilingual precision, low-latency telemetry, and cinematic visual depth into a structured component library, the system establishes a new benchmark for sovereign enterprise design in South Asia.'
+    }
+  },
   {
     id: 'nova-bank-uiux',
     title: 'NOVA Bank App- UI/UX',
@@ -47,7 +323,7 @@ export const projects: Project[] = [
     link: 'https://www.behance.net/gallery/256674557/Banking-App',
     githubLink: '#',
     image: 'https://i.imgur.com/74At7Eb.png',
-    category: 'uiux',
+    category: 'app',
     caseStudy: {
       role: 'Product Designer',
       duration: '4 weeks',
@@ -85,7 +361,7 @@ export const projects: Project[] = [
     link: 'https://www.figma.com/make/OFnry4uD9KGKLMu95b7Cv3/Healthcare-Website-UI-UX-Design?p=f&t=kITwXEySZpP4qtN6-0&fullscreen=1',
     githubLink: '#',
     image: 'https://i.imgur.com/B8mZFK3.png',
-    category: 'uiux',
+    category: 'website',
     caseStudy: {
       role: 'Lead UI/UX Designer',
       duration: '4 weeks',
@@ -125,7 +401,7 @@ export const projects: Project[] = [
     link: 'https://www.behance.net/gallery/256304169/Healthcare-Mobile-App-UIUX-Design',
     githubLink: '#',
     image: 'https://i.imgur.com/oifV1NB.png',
-    category: 'uiux',
+    category: 'app',
     caseStudy: {
       role: 'Product Designer',
       duration: '5 weeks',
@@ -164,7 +440,7 @@ export const projects: Project[] = [
     link: 'https://www.figma.com/proto/DrAbTFlBenf7Pg7tutvbHg/Personl?node-id=6-7533&p=f&t=N3WSfPKKrTqrW8JR-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',
     githubLink: '#',
     image: 'https://i.imgur.com/HRU2KFp.png',
-    category: 'uiux',
+    category: 'dashboard',
     caseStudy: {
       role: 'Lead UI/UX Designer',
       duration: '6 weeks',
@@ -209,7 +485,7 @@ export const projects: Project[] = [
     link: 'https://www.figma.com/design/Cn26jh1v1Swh4MxBZse0IA/Demo-1?node-id=0-1&t=Ysuw7mpTzRnAM86t-1',
     githubLink: '#',
     image: 'https://i.imgur.com/iv01PSL.png',
-    category: 'uiux',
+    category: 'website',
     caseStudy: {
       role: 'UI/UX Designer',
       duration: '3 weeks',
@@ -248,7 +524,7 @@ export const projects: Project[] = [
     link: 'https://www.figma.com/proto/r1HdzOE3ZqLWxrVOHhXgLZ/demo-2?node-id=34-213&p=f&t=ekFTkd1SYRom0iw1-1&scaling=scale-down&content-scaling=fixed&page-id=1%3A3&starting-point-node-id=34%3A213',
     githubLink: '#',
     image: 'https://i.imgur.com/DK02HMg.png',
-    category: 'uiux',
+    category: 'website',
     caseStudy: {
       role: 'UI/UX Designer',
       duration: '3 weeks',
@@ -288,7 +564,7 @@ export const projects: Project[] = [
     link: 'https://www.behance.net/gallery/244368549/Hair-service',
     githubLink: '#',
     image: 'https://i.imgur.com/44UWAMY.png',
-    category: 'uiux',
+    category: 'app',
     caseStudy: {
       role: 'Mobile UI Designer',
       duration: '2 weeks',
@@ -327,7 +603,7 @@ export const projects: Project[] = [
     link: 'https://www.behance.net/gallery/244369729/Multi-vendor-e-ecomerce',
     githubLink: '#',
     image: 'https://i.imgur.com/X1z5NhW.png',
-    category: 'uiux',
+    category: 'website',
     caseStudy: {
       role: 'Product Designer',
       duration: '4 weeks',
@@ -366,7 +642,7 @@ export const projects: Project[] = [
     link: 'https://www.behance.net/gallery/244368899/Travel-agency',
     githubLink: '#',
     image: 'https://i.imgur.com/9CdrPCc.png',
-    category: 'uiux',
+    category: 'website',
     caseStudy: {
       role: 'UI/UX Designer',
       duration: '3 weeks',
@@ -405,7 +681,7 @@ export const projects: Project[] = [
     link: 'https://sourob123theking.wixstudio.com/my-site-1',
     githubLink: '#',
     image: 'https://i.imgur.com/be99Ye6.png',
-    category: 'cms',
+    category: 'landing-page',
     caseStudy: {
       role: 'Web Designer & Developer',
       duration: '2 weeks',
@@ -444,7 +720,7 @@ export const projects: Project[] = [
     link: 'https://asrshourov999.wixstudio.com/my-site-1',
     githubLink: '#',
     image: 'https://i.postimg.cc/sXcSGCVC/Screenshot-2026-01-21-184521.png',
-    category: 'cms',
+    category: 'landing-page',
     caseStudy: {
       role: 'Web Designer & Developer',
       duration: '2 weeks',
@@ -483,7 +759,7 @@ export const projects: Project[] = [
     link: 'https://sourob123theking.wixsite.com/bike-rent-bd',
     githubLink: '#',
     image: 'https://i.imgur.com/jrFqHzX.png',
-    category: 'cms',
+    category: 'landing-page',
     caseStudy: {
       role: 'Web Designer & Developer',
       duration: '2 weeks',
@@ -516,7 +792,9 @@ export const projects: Project[] = [
 ];
 
 export const projectCategories = {
-  all: 'All Projects',
-  uiux: 'UI/UX Design',
-  cms: 'CMS & No-Code',
+  all: 'All',
+  app: 'App',
+  website: 'Website',
+  dashboard: 'Dashboard',
+  'landing-page': 'Landing page',
 };

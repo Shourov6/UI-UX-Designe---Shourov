@@ -1,6 +1,26 @@
 import React from 'react';
-import { ArrowLeft, Briefcase, Clock, Target, Zap, Sparkles, ExternalLink, ChevronRight, BookOpen, Lightbulb, BarChart3, ArrowRight } from 'lucide-react';
-import { type Project } from '../data/projects';
+import {
+  ArrowLeft,
+  Briefcase,
+  Clock,
+  Target,
+  Zap,
+  Sparkles,
+  ExternalLink,
+  ChevronRight,
+  BookOpen,
+  Lightbulb,
+  BarChart3,
+  ArrowRight,
+  ShieldCheck,
+  Palette,
+  Type,
+  Layers,
+  CheckCircle2,
+  Cpu,
+  Check
+} from 'lucide-react';
+import { type Project, categoryLabels } from '../data/projects';
 
 interface CaseStudyPageProps {
   project: Project;
@@ -27,7 +47,7 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ project, onBack })
               Case Study
             </span>
             <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#d2bbff]">
-              {project.category === 'uiux' ? 'UI/UX' : 'CMS'}
+              {categoryLabels[project.category] || project.category}
             </span>
           </div>
         </div>
@@ -47,9 +67,14 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ project, onBack })
               <span className="font-medium">{cs.duration}</span>
             </div>
           </div>
-          <h1 className="mb-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl">
+          <h1 className="mb-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl">
             {project.title}
           </h1>
+          {cs.subtitle && (
+            <p className="mb-6 text-xl font-semibold text-[#c4b5fd]">
+              {cs.subtitle}
+            </p>
+          )}
           <p className="mb-8 max-w-3xl text-lg leading-relaxed text-[#a8a2b5]">
             {project.description}
           </p>
@@ -93,16 +118,39 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ project, onBack })
           ))}
         </section>
 
+        {/* Executive Summary (if available) */}
+        {cs.executiveSummary && (
+          <section className="mb-16">
+            <div className="mb-6 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-950/40 border border-indigo-500/30">
+                <ShieldCheck className="h-5 w-5 text-[#818cf8]" />
+              </div>
+              <h2 className="text-2xl font-bold text-white">Executive Summary</h2>
+            </div>
+            <div className="rounded-2xl border border-indigo-500/20 bg-gradient-to-br from-indigo-950/20 via-[#18182b]/60 to-[#121221] p-6 sm:p-8 backdrop-blur-sm shadow-[0_0_30px_rgba(99,102,241,0.08)]">
+              <div className="space-y-4 text-base leading-relaxed text-[#ccc3d8]">
+                {cs.executiveSummary.split('\n\n').map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Problem Statement */}
         <section className="mb-16">
           <div className="mb-6 flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-950/30 border border-red-500/20">
               <Target className="h-5 w-5 text-[#ffb0cd]" />
             </div>
-            <h2 className="text-2xl font-bold text-white">The Problem</h2>
+            <h2 className="text-2xl font-bold text-white">The Problem &amp; Context</h2>
           </div>
           <div className="rounded-2xl border border-red-500/10 bg-red-950/10 p-6 sm:p-8">
-            <p className="text-base leading-relaxed text-[#ccc3d8]">{cs.problemStatement}</p>
+            <div className="space-y-4 text-base leading-relaxed text-[#ccc3d8]">
+              {cs.problemStatement.split('\n\n').map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -117,13 +165,187 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ project, onBack })
           </div>
         </section>
 
+        {/* Core Visual Principles & Design Philosophy (if available) */}
+        {cs.corePrinciples && cs.corePrinciples.length > 0 && (
+          <section className="mb-16">
+            <div className="mb-8 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1e1b4b]/60 border border-[#7c3aed]/30">
+                <Layers className="h-5 w-5 text-[#c4b5fd]" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">Core Visual Principles &amp; Design Philosophy</h2>
+                <p className="text-sm text-[#a8a2b5]">Foundational tenets governing high-density sovereign enterprise UX</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              {cs.corePrinciples.map((principle) => (
+                <div
+                  key={principle.title}
+                  className="rounded-2xl border border-white/10 bg-[#18182b]/50 p-6 transition-all duration-300 hover:border-[#7c3aed]/40 hover:bg-[#18182b]/80"
+                >
+                  <div className="mb-2 inline-block rounded-md border border-[#7c3aed]/30 bg-[#7c3aed]/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#d2bbff]">
+                    {principle.tagline}
+                  </div>
+                  <h3 className="mb-3 text-lg font-bold text-white">{principle.title}</h3>
+                  <p className="mb-4 text-sm leading-relaxed text-[#ccc3d8]">{principle.description}</p>
+                  {principle.badges && (
+                    <div className="flex flex-wrap gap-1.5 pt-2 border-t border-white/5">
+                      {principle.badges.map((b) => (
+                        <span
+                          key={b}
+                          className="rounded-md border border-white/5 bg-white/5 px-2 py-0.5 font-mono text-[11px] text-[#a8a2b5]"
+                        >
+                          {b}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Color Architecture & Tokenomics (if available) */}
+        {cs.colorTokens && cs.colorTokens.length > 0 && (
+          <section className="mb-16">
+            <div className="mb-8 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-950/40 border border-violet-500/30">
+                <Palette className="h-5 w-5 text-[#a78bfa]" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">Color Architecture &amp; Tokenomics</h2>
+                <p className="text-sm text-[#a8a2b5]">Reconciling institutional sovereign trust with electric AI intelligence</p>
+              </div>
+            </div>
+
+            <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#18182b]/40 backdrop-blur-sm">
+              <div className="grid grid-cols-1 divide-y divide-white/5 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-3">
+                {cs.colorTokens.map((token) => (
+                  <div key={token.role} className="p-5 flex flex-col justify-between hover:bg-white/[0.02] transition-colors border-b border-white/5">
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center gap-3">
+                          <span
+                            className="h-6 w-6 rounded-lg border border-white/20 shadow-sm shrink-0"
+                            style={{ backgroundColor: token.hex }}
+                          />
+                          <span className="font-semibold text-white text-sm">{token.role}</span>
+                        </div>
+                        <span className="font-mono text-xs text-[#a8a2b5] bg-white/5 px-2 py-1 rounded border border-white/10">
+                          {token.hex}
+                        </span>
+                      </div>
+                      <p className="text-xs leading-relaxed text-[#ccc3d8]">{token.intent}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Typography & Bilingual Information Hierarchy (if available) */}
+        {(cs.typographySpecs || cs.bilingualStrategy) && (
+          <section className="mb-16">
+            <div className="mb-8 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-950/40 border border-cyan-500/30">
+                <Type className="h-5 w-5 text-[#22d3ee]" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">Typography &amp; Bilingual Information Hierarchy</h2>
+                <p className="text-sm text-[#a8a2b5]">Clean Latin glyphs paired with calibrated Shuddho Bangla ligatures</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+              {/* Type Specs */}
+              {cs.typographySpecs && (
+                <div className="rounded-2xl border border-white/10 bg-[#18182b]/50 p-6">
+                  <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-[#22d3ee]">
+                    Typographic Scale &amp; Telemetry
+                  </h3>
+                  <div className="space-y-3 font-mono text-xs">
+                    {cs.typographySpecs.map((item) => (
+                      <div key={item.level} className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/5 pb-2.5 gap-1">
+                        <span className="font-semibold text-[#e3e0f7]">{item.level}:</span>
+                        <span className="text-[#a8a2b5] text-[11px]">{item.specs}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Bilingual Strategy */}
+              {cs.bilingualStrategy && (
+                <div className="space-y-4">
+                  {cs.bilingualStrategy.map((strat) => (
+                    <div key={strat.title} className="rounded-2xl border border-white/10 bg-[#18182b]/50 p-6">
+                      <h4 className="mb-2 text-sm font-bold text-white flex items-center gap-2">
+                        <Sparkles className="h-4 w-4 text-[#ffb0cd]" />
+                        {strat.title}
+                      </h4>
+                      <p className="text-xs leading-relaxed text-[#ccc3d8]">{strat.description}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* Architectural Component Patterns (if available) */}
+        {cs.architecturalPatterns && cs.architecturalPatterns.length > 0 && (
+          <section className="mb-16">
+            <div className="mb-8 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-950/40 border border-indigo-500/30">
+                <Cpu className="h-5 w-5 text-[#818cf8]" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">Architectural Component Patterns</h2>
+                <p className="text-sm text-[#a8a2b5]">High-craft modular components replicated across all 38 platform surfaces</p>
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              {cs.architecturalPatterns.map((pattern) => (
+                <div
+                  key={pattern.number}
+                  className="rounded-2xl border border-white/10 bg-[#18182b]/50 p-6 sm:p-8 transition-all hover:border-[#7c3aed]/40 hover:bg-[#18182b]/80"
+                >
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#7c3aed]/20 font-mono text-xs font-bold text-[#c4b5fd]">
+                        {pattern.number}
+                      </span>
+                      <h3 className="text-lg font-bold text-white">{pattern.title}</h3>
+                    </div>
+                    <span className="font-mono text-[11px] text-[#8b7ffc] bg-[#1e1b4b]/60 border border-[#7c3aed]/30 px-2.5 py-1 rounded-full">
+                      {pattern.screenRefs}
+                    </span>
+                  </div>
+                  <p className="mb-4 text-sm leading-relaxed text-[#ccc3d8]">{pattern.description}</p>
+                  <ul className="space-y-2 border-t border-white/5 pt-4">
+                    {pattern.features.map((feat, idx) => (
+                      <li key={idx} className="flex items-start gap-2.5 text-xs text-[#a8a2b5]">
+                        <Check className="h-4 w-4 shrink-0 text-[#22c55e] mt-0.5" />
+                        <span>{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Solution */}
         <section className="mb-16">
           <div className="mb-6 flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-950/30 border border-[#7c3aed]/30">
               <Lightbulb className="h-5 w-5 text-[#c4b5fd]" />
             </div>
-            <h2 className="text-2xl font-bold text-white">The Solution</h2>
+            <h2 className="text-2xl font-bold text-white">The Solution &amp; System Features</h2>
           </div>
           <div className="rounded-2xl border border-[#7c3aed]/15 bg-[#1e1b4b]/15 p-6 sm:p-8">
             <p className="mb-6 text-base leading-relaxed text-[#ccc3d8]">{cs.solutionApproach}</p>
@@ -146,7 +368,7 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ project, onBack })
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#1e1b4b]/50 border border-[#7c3aed]/20">
               <BookOpen className="h-5 w-5 text-[#8b7ffc]" />
             </div>
-            <h2 className="text-2xl font-bold text-white">Design Process</h2>
+            <h2 className="text-2xl font-bold text-white">Design Process &amp; Phases</h2>
           </div>
           <div className="space-y-6">
             {cs.processSteps.map((step, index) => (
@@ -252,13 +474,38 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ project, onBack })
           </div>
         </section>
 
+        {/* Impact & Cohesion Analysis (if available) */}
+        {cs.impactCohesion && cs.impactCohesion.length > 0 && (
+          <section className="mb-16">
+            <div className="mb-8 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-950/40 border border-emerald-500/30">
+                <CheckCircle2 className="h-5 w-5 text-[#34d399]" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">Impact &amp; Cohesion Analysis</h2>
+                <p className="text-sm text-[#a8a2b5]">Measurable operational parity across the 38-screen lifecycle</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              {cs.impactCohesion.map((item) => (
+                <div key={item.label} className="rounded-2xl border border-white/10 bg-[#18182b]/60 p-6 backdrop-blur-sm">
+                  <div className="mb-2 text-2xl font-extrabold text-[#34d399]">{item.metric}</div>
+                  <h4 className="mb-2 text-sm font-bold text-white">{item.label}</h4>
+                  <p className="text-xs leading-relaxed text-[#a8a2b5]">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Outcome */}
         <section className="mb-16">
           <div className="mb-6 flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-950/30 border border-emerald-500/20">
               <Zap className="h-5 w-5 text-[#22c55e]" />
             </div>
-            <h2 className="text-2xl font-bold text-white">Outcome & Impact</h2>
+            <h2 className="text-2xl font-bold text-white">Outcome &amp; Impact</h2>
           </div>
           <div className="rounded-2xl border border-emerald-500/10 bg-emerald-950/10 p-6 sm:p-8">
             <p className="text-lg font-semibold leading-relaxed text-[#34d399]">{cs.outcome}</p>
@@ -278,10 +525,23 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ project, onBack })
           </div>
         </section>
 
+        {/* Conclusion (if available) */}
+        {cs.conclusion && (
+          <section className="mb-16">
+            <div className="rounded-2xl border border-[#7c3aed]/30 bg-gradient-to-br from-[#1e1b4b]/40 via-[#18182b]/60 to-[#121221] p-6 sm:p-8">
+              <div className="mb-3 flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-[#c4b5fd]" />
+                <span className="text-xs font-bold uppercase tracking-wider text-[#c4b5fd]">Conclusion</span>
+              </div>
+              <p className="text-base leading-relaxed text-[#e3e0f7]">{cs.conclusion}</p>
+            </div>
+          </section>
+        )}
+
         {/* CTA Footer */}
         <section className="rounded-3xl border border-[#7c3aed]/20 bg-gradient-to-br from-[#1e1b4b]/60 to-[#121221] p-8 text-center sm:p-12">
           <h3 className="mb-3 text-2xl font-bold text-white">Interested in a similar project?</h3>
-          <p className="mb-6 text-sm text-[#a8a2b5]">Let's discuss how I can help bring your vision to life.</p>
+          <p className="mb-6 text-sm text-[#a8a2b5]">Let's discuss how I can help bring your sovereign enterprise vision to life.</p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             {project.link && project.link !== '#' && (
               <a
@@ -290,7 +550,7 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ project, onBack })
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-[#7c3aed] px-8 py-3.5 text-sm font-semibold text-white shadow-[0_0_25px_rgba(124,58,237,0.4)] transition-all hover:bg-[#6d28d9] hover:shadow-[0_0_35px_rgba(124,58,237,0.6)]"
               >
-                <span>View Live Project</span>
+                <span>View Live on Behance</span>
                 <ExternalLink className="h-4 w-4" />
               </a>
             )}

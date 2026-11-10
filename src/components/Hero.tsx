@@ -139,13 +139,13 @@ export const Hero: React.FC<HeroProps> = ({
           overflow-hidden
         "
       >
-        <img
-          src="https://i.imgur.com/FuHguYi.png"
-          alt=""
+        <video
+          src="https://i.imgur.com/RsA5oUi.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
           aria-hidden="true"
-          referrerPolicy="no-referrer"
-          fetchPriority="high"
-          decoding="sync"
           className="
             absolute
             top-[55px]
@@ -585,7 +585,7 @@ export const Hero: React.FC<HeroProps> = ({
             pointer-events-none
             absolute
             right-[1%]
-            top-[26%]
+            top-[50%]
             z-20
             hidden
             rotate-[-6deg]
@@ -623,8 +623,8 @@ export const Hero: React.FC<HeroProps> = ({
           transition={{ delay: 0.9 }}
           className="
             absolute
-            right-[37%]
-            top-[50%]
+            right-[30%]
+            top-[42%]
             z-20
             hidden
             items-center

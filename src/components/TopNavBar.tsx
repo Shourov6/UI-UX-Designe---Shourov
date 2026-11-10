@@ -5,9 +5,10 @@ import { AnimatePresence, motion, useScroll, useSpring } from 'motion/react';
 interface TopNavBarProps {
   activeSection: string;
   onNavigate: (sectionId: string) => void;
+  onResumeClick?: () => void;
 }
 
-export const TopNavBar: React.FC<TopNavBarProps> = ({ activeSection, onNavigate }) => {
+export const TopNavBar: React.FC<TopNavBarProps> = ({ activeSection, onNavigate, onResumeClick }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -36,6 +37,11 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ activeSection, onNavigate 
   const handleLinkClick = (id: string) => {
     setMobileMenuOpen(false);
     onNavigate(id);
+  };
+
+  const handleResumeClick = () => {
+    setMobileMenuOpen(false);
+    onResumeClick?.();
   };
 
   return (
@@ -96,6 +102,13 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ activeSection, onNavigate 
                 </button>
               );
             })}
+            {/* Resume nav link */}
+            <button
+              onClick={handleResumeClick}
+              className="relative rounded-full px-3.5 py-1.5 text-[0.85rem] font-medium text-[#958da1] hover:text-[#e3e0f7] transition-colors duration-200 focus:outline-none cursor-pointer"
+            >
+              Résumé
+            </button>
           </div>
 
           {/* Trailing Actions */}
@@ -156,6 +169,17 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({ activeSection, onNavigate 
                   {link.label}
                 </motion.button>
               ))}
+              {/* Resume – mobile */}
+              <motion.button
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -12 }}
+                transition={{ delay: navLinks.length * 0.04 }}
+                onClick={handleResumeClick}
+                className="text-left py-2 px-3 rounded-xl text-sm font-medium text-[#d2bbff] bg-[#7c3aed]/10 border border-[#7c3aed]/25 hover:bg-[#7c3aed]/20 transition-all"
+              >
+                Résumé
+              </motion.button>
               <button
                 onClick={() => handleLinkClick('contact')}
                 className="w-full mt-2 py-2.5 rounded-xl bg-gradient-to-r from-[#7c3aed] to-[#3626ce] text-white text-center text-sm font-semibold flex items-center justify-center gap-2"
